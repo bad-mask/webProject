@@ -12,6 +12,8 @@
 			margin: 30px auto; 
 		} 
 		#main .tabs{ display: none; }
+		/* element element ：例子：div p，选择所有 div 元素内部的所有 p 元素; */
+		/* element + element ：例子：div+p，选择紧接在 div 元素之后的所有 p 元素; */
 		#main input.tabs + label div{
 			height: 65px; width: 261px;
 			position: absolute; 
@@ -28,12 +30,14 @@
 			font-size:14px; 
 			color:#fff; 
 		}
+		/* line-height: 设置行间的距离，行高，不允许使用负值; */
 		input.tabs + label dl dd{ 
 			font-family:"微软雅黑"; 
 			color:#E3E3E3; 
 			font-size:12px; 
 			line-height:20px;
 		}
+		/* input:checked，选择每个被选中的 input 元素; */
 		input.tabs:checked + label  dl{ background: -webkit-gradient(linear, left top, right bottom, color-stop(0, rgba(0, 0, 0, .65)), color-stop(1, transparent));}
 
 		.tp{ 
@@ -59,6 +63,7 @@
 		<input type="radio" name="tab" id="tab1" class="tabs" checked="checked">
 		<label for="tab1">
 			<div class="bg1">
+				<!-- 列表分为：有序列表ol、无序列表ul、定义列表dl -->
 				<dl id="dl1">
 					<dt><img src="images/but1.png" width="40" /></dt>
 					<dd class="title">精心挑选，倾情推荐</dd>
