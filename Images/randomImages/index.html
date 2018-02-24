@@ -1,4 +1,14 @@
+<!-- <!DOCTYPE> 声明必须是 HTML 文档的第一行，位于 <html> 标签之前；
+ <!DOCTYPE> 声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。
+ DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。
+ -->
+<!-- 常用的 DOCTYPE 声明
+是 XHTML 1.0 Transitional 声明，该 DTD 包含所有 HTML 元素和属性，包括展示性和弃用的元素。不允许框架集。必须以格式正确的 XML 来编写标记。 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- xmlns 属性可以在文档中定义一个或多个可供选择的命名空间。
+ 该属性可以放置在文档内任何元素的开始标签中。
+ 该属性的值类似于 URL，它定义了一个命名空间，浏览器会将此命名空间用于该属性所在元素内的所有内容。 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,6 +18,10 @@
 	#box{font-size:16px;text-align:center;margin:50px auto;}
 	input{width:80px;height:30px;line-height:30px;background:#396;color:#fff;}
 	#tab{margin:30px auto;}
+	/*list-style 属性：在一个声明中设置所有的列表属性。
+	由于它应用到所有 display 为 list-item 的元素，所以在普通的 HTML 和 XHTML 中只能用于 li 元素，不过实际上它可以应用到任何元素，并由 list-item 元素继承。
+	可以按照顺序设置如下属性：list-style-type list-style-position list-style-image
+	*/
 	#tab ul{list-style:none;width:1000px;margin:0 auto;}
 	#tab li img{width:300px;height:200px;margin:20px 10px;}
 	#tab li{float:left;cursor:pointer;}
@@ -20,12 +34,15 @@
 		var arr2=[];
 		var arr3=[];
 		
+		/*push() 将一个元素添加到数组的末尾，返回被添加的元素*/
 		for(var i=0;i<aLi.length;i++){
 			arr1.push(aLi[i].getElementsByTagName("img")[0].src);
 			arr2.push(aLi[i].getElementsByTagName("span")[0].innerHTML);
 			arr3.push(i);
 			
 		}
+
+		/*arrayObject.sort(sortby)  ----  sortby 可选。规定排序顺序。必须是函数*/
 		var onOff=true;
 		aBut[0].onclick=function(){
 			if(onOff){
