@@ -3,41 +3,35 @@
 	After Miaowei Classroom learning, completely write their own code library.
 */
 
-
-
-/*---------$()Ê¹ÓÃ  ¿ªÊ¼---------*/
-
+/*
+typeof ç”¨ä»¥è·å–ä¸€ä¸ªå˜é‡çš„ç±»å‹ï¼Œtypeof ä¸€èˆ¬åªèƒ½è¿”å›å¦‚ä¸‹å‡ ä¸ªç»“æœï¼šnumberï¼Œbooleanï¼Œstringï¼Œfunctionï¼Œobjectï¼Œundefinedã€‚
+ä½¿ç”¨ typeof æ¥è·å–ä¸€ä¸ªå˜é‡æ˜¯å¦å­˜åœ¨ï¼Œå¯¹äº Arrayã€Null ç­‰ç‰¹æ®Šå¯¹è±¡ä½¿ç”¨ typeof ä¸€å¾‹è¿”å› objectï¼Œè¿™æ­£æ˜¯ typeof çš„å±€é™æ€§ã€‚
+instanceof åˆ¤æ–­ä¸€ä¸ªå˜é‡æ˜¯å¦æ˜¯æŸä¸ªå¯¹è±¡çš„å®ä¾‹ã€‚*/
+/*
+==:ä¸¤è¾¹å€¼ç±»å‹ä¸åŒæ—¶ï¼Œè¦å…ˆè¿›è¡Œç±»å‹è½¬æ¢ï¼Œå†æ¯”è¾ƒï¼›
+===:ä¸åšç±»å‹è½¬æ¢ï¼Œç±»å‹ä¸åŒçš„ä¸€å®šä¸ç­‰ã€‚*/
 function $( v ){
-	if( typeof v === 'function' ){	//Èç¹ûµÈÓÚº¯Êı£¬¾ÍÔÚÒ³Ãæ¼ÓÔØÍêÖ®ºóÖ´ĞĞ´úÂë
+	if( typeof v === 'function' ){	//ÃˆÃ§Â¹Ã»ÂµÃˆÃ“ÃšÂºÂ¯ÃŠÃ½Â£Â¬Â¾ÃÃ”ÃšÃ’Â³ÃƒÃ¦Â¼Ã“Ã”Ã˜ÃÃªÃ–Â®ÂºÃ³Ã–Â´ÃÃÂ´ÃºÃ‚Ã«
 		window.onload = v;
-	} else if ( typeof v === 'string' ) {	//Èç¹ûµÈÓÚ×Ö·û´®£¬ÄÇÃ´¾Í²éÕÒid
+	} else if ( typeof v === 'string' ) {	//ÃˆÃ§Â¹Ã»ÂµÃˆÃ“ÃšÃ—Ã–Â·Ã»Â´Â®Â£Â¬Ã„Ã‡ÃƒÂ´Â¾ÃÂ²Ã©Ã•Ã’id
 		return document.getElementById(v);
-	} else if ( typeof v === 'object' ) {	//Èç¹ûµÈÓÚ¶ÔÏó£¬¾ÍÖ±½Ó·µ»Ø¶ÔÏó
+	} else if ( typeof v === 'object' ) {	//ÃˆÃ§Â¹Ã»ÂµÃˆÃ“ÃšÂ¶Ã”ÃÃ³Â£Â¬Â¾ÃÃ–Â±Â½Ã“Â·ÂµÂ»Ã˜Â¶Ã”ÃÃ³
 		return v;
 	}
 }
 
-/*---------$()Ê¹ÓÃ  ½áÊø---------*/
 
+//é€šè¿‡ document.getElementById(id).style.XXX å°±å¯ä»¥è·å–åˆ° XXX çš„å€¼ï¼Œä½†æ„å¤–çš„æ˜¯ï¼Œè¿™æ ·åšåªèƒ½å–åˆ°é€šè¿‡å†…åµŒæ–¹å¼è®¾ç½®çš„æ ·å¼å€¼ï¼Œå³ style å±æ€§é‡Œé¢è®¾ç½®çš„å€¼ã€‚
 
-
-
-/*---------getStyle()£¬ºĞ×Ó¼ÆËãºóÏÔÊ¾½á¹û  ¿ªÊ¼---------*/
-
-//»ñÈ¡¼ÆËãºóµÄºĞ×ÓÑùÊ½£¬objÌîĞ´ºĞ×Ó£¬attrÌîĞ´¿í»òÕß¸ß£¬°üÀ¨Í¸Ã÷¶ÈµÈµÈ
+/*currentStyle æ˜¯ IE æµè§ˆå™¨è‡ªå¨±è‡ªä¹çš„ä¸€ä¸ªå±æ€§ï¼Œå…¶ä¸ element.style å¯ä»¥è¯´æ˜¯è¿‘äº²ï¼Œè‡³å°‘åœ¨ä½¿ç”¨å½¢å¼ä¸Šç±»ä¼¼ï¼Œelement.currentStyleï¼Œ
+å·®åˆ«åœ¨äº element.currentStyle è¿”å›çš„æ˜¯å…ƒç´ å½“å‰åº”ç”¨çš„æœ€ç»ˆ CSS å±æ€§å€¼ï¼ˆåŒ…æ‹¬å¤–é“¾ CSS æ–‡ä»¶ï¼Œé¡µé¢ä¸­åµŒå…¥çš„ <style> å±æ€§ç­‰ï¼‰ã€‚*/
 function getStyle( obj, attr ){
 	return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle( obj )[attr];
 }
 
-/*---------getStyle()£¬ºĞ×Ó¼ÆËãºóÏÔÊ¾½á¹û  ½áÊø---------*/
 
-
-
-
-
-/*---------doMove()£¬¿ÉÒÔ¶¯µÄºĞ×Ó  ¿ªÊ¼---------*/
-
-//objÊÇºĞ×Ó  attrÊÇÒª×ßµÄ¿í»òÕß¸ß  dirÊÇ²½³¤£¬targetÊÇµ½´ïµÄÎ»ÖÃ£¬endfnÊÇ¿ÉÒÔ¼ÌĞøÖ´ĞĞµÄº¯Êı
+/*
+clearInterval() æ–¹æ³•å¯å–æ¶ˆç”± setInterval() è®¾ç½®çš„ timeoutï¼›clearInterval() æ–¹æ³•çš„å‚æ•°å¿…é¡»æ˜¯ç”± setInterval() è¿”å›çš„ ID å€¼ï¼›*/
 function doMove ( obj, attr, dir, target, endFn ) {
 	
 	dir = parseInt(getStyle( obj, attr )) < target ? dir : -dir;
@@ -46,9 +40,9 @@ function doMove ( obj, attr, dir, target, endFn ) {
 	
 	obj.timer = setInterval(function () {
 		
-		var speed = parseInt(getStyle( obj, attr )) + dir;			// ²½³¤
+		var speed = parseInt(getStyle( obj, attr )) + dir;			// Â²Â½Â³Â¤
 		
-		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) {
+		if ( speed > target && dir > 0 ||  speed < target && dir < 0  ) { //ç¬¬äºŒä¸ªæ¡ä»¶ä¸å¤ªæ˜ç™½å•Š
 			speed = target;
 		}
 		
@@ -57,11 +51,6 @@ function doMove ( obj, attr, dir, target, endFn ) {
 		if ( speed == target ) {
 			clearInterval( obj.timer );
 			
-			/*
-			if ( endFn ) {
-				endFn();
-			}
-			*/
 			endFn && endFn();
 			
 		}
@@ -69,16 +58,7 @@ function doMove ( obj, attr, dir, target, endFn ) {
 	}, 30);
 }
 
-/*---------doMove()£¬¿ÉÒÔ¶¯µÄºĞ×Ó  ½áÊø--------*/
 
-
-
-
-
-
-/*---------shake()£¬¿ÉÒÔ¶¶¶¯µÄºĞ×Ó  ¿ªÊ¼---------*/
-
-//¶¶º¯Êı£¬objÊÇºĞ×Ó£¬attrÊÇtop»òÕßleft£¬endFnÊÇ¿ÉÒÔÖ´ĞĞÁíÍâµÄº¯Êı shake( this, 'left');
 function shake ( obj, attr, endFn ) {
 	var pos = parseInt( getStyle(obj, attr) );
 	var arr = [];			// 20, -20, 18, -18 ..... 0
@@ -89,65 +69,19 @@ function shake ( obj, attr, endFn ) {
 		arr.push( i, -i );
 	}
 	arr.push(0);
-	if(obj.onOff !== true ){	//¿ª¹ØÈç¹û²»µÈÓÚtrue£¬¾ÍÖ´ĞĞÏÂÃæµÄ´úÂë ×¢£º±ÜÃâÖØ¸´Ê¹ÓÃ¶¶
+	if(obj.onOff !== true ){	//Â¿ÂªÂ¹Ã˜ÃˆÃ§Â¹Ã»Â²Â»ÂµÃˆÃ“ÃštrueÂ£Â¬Â¾ÃÃ–Â´ÃÃÃÃ‚ÃƒÃ¦ÂµÃ„Â´ÃºÃ‚Ã« Ã—Â¢Â£ÂºÂ±ÃœÃƒÃ¢Ã–Ã˜Â¸Â´ÃŠÂ¹Ã“ÃƒÂ¶Â¶
 		clearInterval( obj.shake );
 		obj.shake = setInterval(function (){
-			obj.onOff = true;	//¿ªÊ¼Ö´ĞĞµÄÊ±ºò£¬Ò»Ö±Îªtrue£¬µ«ÊÇÕâÀïµÄtrueÊÇ¹Ø±Õ
+			obj.onOff = true;	//Â¿ÂªÃŠÂ¼Ã–Â´ÃÃÂµÃ„ÃŠÂ±ÂºÃ²Â£Â¬Ã’Â»Ã–Â±ÃÂªtrueÂ£Â¬ÂµÂ«ÃŠÃ‡Ã•Ã¢Ã€Ã¯ÂµÃ„trueÃŠÃ‡Â¹Ã˜Â±Ã•
 			obj.style[attr] = pos + arr[num] + 'px';
 			num++;
 			if ( num === arr.length ) {
 				clearInterval( obj.shake );
 				endFn && endFn();
-				obj.onOff = false;	//Ö´ĞĞÍêÖ®ºó£¬¾Í±ä³Éflase£¬È»ºóÓÖ¿ÉÒÔ¿ªÊ¼µã»÷
+				obj.onOff = false;	//Ã–Â´ÃÃÃÃªÃ–Â®ÂºÃ³Â£Â¬Â¾ÃÂ±Ã¤Â³Ã‰flaseÂ£Â¬ÃˆÂ»ÂºÃ³Ã“Ã–Â¿Ã‰Ã’Ã”Â¿ÂªÃŠÂ¼ÂµÃ£Â»Ã·
 			}
 		}, 50);
 	}
 }
 
-/*---------shake()£¬¿ÉÒÔ¶¶¶¯µÄºĞ×Ó  ½áÊø---------*/
 
-
-/*---------hide()£¬½¥Òş objÊÇºĞ×Ó£¬secÊÇ½¥ÒşÊ±¼ä£¬endFnÊÇ¼ÌĞøÖ´ĞĞµÄº¯Êı---------*/
-function hide(obj,cy,sec,endFn){
-	var timer = null;
-	var fadeNum = Number(getStyle( obj, 'opacity' )*100);
-	var fadeNum1 = Number(getStyle( obj, 'opacity' ));
-	
-	timer = setInterval(function(){
-		fadeNum -= 10;
-		fadeNum1 -=0.1;
-		obj.style.filter="alpha(opacity="+fadeNum+")";  
-		obj.style['-moz-opacity'] =fadeNum1;  
-		obj.style['-khtml-opacity']=fadeNum1;  
-		obj.style.opacity = fadeNum1;
-		if(fadeNum==cy*100 || fadeNum1==cy){
-			clearInterval( timer );
-			endFn && endFn();
-		}
-	},sec);
-}
-
-/*---------hide()£¬½¥Òş---------*/
-
-
-
-/*---------out()£¬½¥³ö objÊÇºĞ×Ó£¬secÊÇ½¥³öÊ±¼ä£¬endFnÊÇ¼ÌĞøÖ´ĞĞµÄº¯Êı---------*/
-function out(obj,cy,sec,endFn){
-	var timer = null;
-	var fadeNum = Number(getStyle( obj, 'opacity' )*100);
-	var fadeNum1 = Number(getStyle( obj, 'opacity' ));
-	timer = setInterval(function(){
-		fadeNum += 10;
-		fadeNum1 +=0.1;
-		obj.style.filter="alpha(opacity="+fadeNum+")";  
-		obj.style['-moz-opacity'] =fadeNum1;  
-		obj.style['-khtml-opacity']=fadeNum1;  
-		obj.style.opacity = fadeNum1;
-		if(fadeNum==cy*100 || fadeNum1==cy){
-			clearInterval( timer );
-			endFn && endFn();
-		}
-	},sec);
-}
-
-/*---------out()£¬½¥³ö---------*/
