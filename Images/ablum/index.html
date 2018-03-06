@@ -5,11 +5,17 @@
 	<title>相册图片可放大查看</title>
 	<style>
 		*{ margin: 0; padding: 0; }
-		#wrap{ width: 1000px; height: 630px; margin: 0 auto; }
+		#wrap{ width: 1000px; height: 630px; margin: auto; }
+		/* 类选择器 */
+		/* list-style ,简写属性，在一个声明中设置所有的列表属性；可以按顺序设置如下属性：list-style-type, list-style-position, list-style-image;
+           list-style-type 的默认值是 disc，实心圆；list-style-position 的默认值是 outside，保持标记位于文本的左侧。列表项目放置在文本意外，且环绕文本部根据标记对齐。*/
 		.images li{ box-shadow: 2px 2px 5px #333; margin: 10px 20px; float: left; list-style: none; font-size: 0; border-radius: 5px; }
+		/* 规定元素应该生成的框的类型：none:此元素不会被显示；block:此元素将显示为块级元素，此元素前后会带有换行符；inline：默认。此元素会被显示为内联元素; */
 		#black{ width: 100%; height: 100%;  position: absolute; top:0; left: 0;background: rgba(000,000,000,0.7); display: none;}
-		#big{ width: 650px; height: 406px; position: absolute; border: 10px solid #fff; display: none;}
+		#big{ width: 650px; height: 406px; position: absolute; border: 10px solid #FFF; display: none;}
+		/* #号是id选择器 */
 		#img{ width: 100%; height: 100%; }
+		/* cursor 属性规定要显示的光标的类型「形状」，pointer ：光标呈现为指示链接的指针 */
 		#left,#right{ position: absolute; top: 180px; cursor: pointer; }
 		#left{ left: -60px;  }
 		#right{ right: -60px; }
@@ -38,6 +44,7 @@
 
 				black.style.display = "block";
 				big.style.display = "block";
+				/* top属性设置元素的顶边缘距离父元素顶边缘的之上或之下的距离。 */
 				big.style.left = big.style.top = "50%";
 				big.style.marginLeft = -big.offsetWidth/2 + "px";
 				big.style.marginTop = -big.offsetHeight/2 + "px";
@@ -80,7 +87,8 @@
 <body>
 	<div id="wrap">
 		<div class="images">
-			<ul>
+			<!-- 无序列表 -->
+			<ul> 
 				<li><a href="images/big1.jpg"><img src="images/s1.jpg" alt="" /></a></li>
 				<li><a href="images/big2.jpg"><img src="images/s2.jpg" alt="" /></a></li>
 				<li><a href="images/big3.jpg"><img src="images/s3.jpg" alt="" /></a></li>

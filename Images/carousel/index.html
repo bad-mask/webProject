@@ -7,25 +7,32 @@
 		*{ margin: 0; padding: 0; }
 		.main{ width: 900px; height: 500px; position: relative; }
 		.content{ width: 100%; height: 100%; }
+		/*element>element :例:div>p，父元素为 div 元素的所有 p 元素*/
 		.content>div{ width: 225px; height: 100%; background: #333; float: left; position: relative; overflow: hidden; }
+		/* element element :例：div p，选择 div 元素内部的所有 p 元素; */
 		.content>div span{ width: 100%; height: 100%; display: block; background: #fff; position: absolute; top: 0; left: 225px; }
-
+		/* :nth-child(n) : 例:p:nth-child(2)，选择属于其父元素的第二个子元素的每个 <p> 元素; */
+		/* element1~element2 : 例:p~ul，选择前面有 <p> 元素的每个 <ul> 元素; */
 		input#btn1:checked~.content div span:nth-child(1){ background-image: url("./images/1.jpg") }
 		input#btn2:checked~.content div span:nth-child(2){ background-image: url("./images/2.jpg") }
 		input#btn3:checked~.content div span:nth-child(3){ background-image: url("./images/3.jpg") }
 		input#btn4:checked~.content div span:nth-child(4){ background-image: url("./images/4.jpg") }
 
+		/* background-position : 设置背景图像的起始位置，x%  y% ，第一个值是水平位置，第二个值是垂直位置 ; */
 		.content div:nth-child(1) span{ background-position: 0px 0px; }
 		.content div:nth-child(2) span{ background-position: -225px 0px; }
 		.content div:nth-child(3) span{ background-position: -450px 0px; }
 		.content div:nth-child(4) span{ background-position: -675px 0px; }
-
+		/* #id: 例：#firstname，选择 id = “firstname” 的所有元素; */
+		/* :checked : 例:input:checked，选择每个被选中的 <input> 元素; */
 		input#btn1:checked ~ .content div span:nth-child(1),
 		input#btn2:checked ~ .content div span:nth-child(2),
 		input#btn3:checked ~ .content div span:nth-child(3),
 		input#btn4:checked ~ .content div span:nth-child(4)
 		{ left:0px; -webkit-transition:left 0.5s ease; }
 
+		/* border-radius : 向 div 元素添加圆角边框; */
+		/* z-index : 设置图像的 z-index，设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面; */
 		label{ width:30px; height: 30px; background: #333; color: #fff; display:block; border-radius:50%; text-align:center; line-height:30px; position: absolute; z-index:333; top: 450px; cursor: pointer; }
 
 		input#btn1 + label{ left:700px; }

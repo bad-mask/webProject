@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- 在 HTML 中 ，meta 标签没有结束标签；在 XHTML 中，meta 标签必须被正确的关闭 -->
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>放大镜效果</title>
 	<style>
 		*{ margin: 0; padding: 0; }
 		#normal{ width: 400px; height: 300px; position: relative; border: 1px solid #333; top: 10px; }
+		/* element>element：例子：div>p ，选择父元素为 div 元素之后的所有 p 元素。 */
 		#normal>img{ width: 100%; height: 100%; }
+		/* cursor 属性规定要显示的光标的类型。pointer: 光标呈现为指示链接的指针「一只手」; move:此光标指示某对象可被移动 ; */
 		#lay{ background: orange; opacity: 0.5; position: absolute; left: 0; top: 0; cursor: move; display: none; }
-		#bigImg{ width: 300px; height: 300px; position: absolute; left: 450px; top:10px; overflow: hidden; border: 1px solid #333; display: none; }
+		/* overflow: 属性规定当内容溢出元素框时发生的事情; 
+		可能的值：hidden: 内容会被修剪，并且其余内容是不可见的；
+		scroll: 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容；
+		auto: 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。*/
+		#bigImg{ width: 400px; height: 300px; position: absolute; left: 450px; top:10px; overflow: hidden; border: 1px solid #333; display: none; }
 		#bigImg>img{ position: absolute; display: block;  }
 	</style>
 	<script>
 		window.onload = function(){
 
+            // 在 JS 中使用 var 关键字来声明变量
 			var normal = document.getElementById("normal");
 			var lay = document.getElementById("lay");
 			var bigImg = document.getElementById("bigImg");
@@ -34,6 +42,7 @@
 				var ev = ev || event;
 				var scale = 4; //图片的放缩比例 
 				//将鼠标放到放大镜的中间 
+				// event.clientX 就是用来获取鼠标距游览器显示窗口的长度
 				var x = ev.clientX - lay.offsetWidth/2 - normal.offsetLeft;
 				var y = ev.clientY - lay.offsetHeight/2 - normal.offsetTop;
 				//将放大镜的宽高与盒子的宽高结合起来按比例放缩  
@@ -62,6 +71,7 @@
 				//同比例放缩，大的盒子图片的放缩比例，当小盒子向右移动的时候，大盒子向左移动同等的比例的宽高，方向是相反的;
 				var left = scale * lay.offsetLeft;
 				var top = scale * lay.offsetTop;
+				// left 属性设置定位元素左外边距边界与其包含块左边界之间的偏移。
 				img.style.left = -left + "px";
 				img.style.top = -top + "px";
 			}
@@ -71,7 +81,9 @@
 </head>
 <body>
 	<div id="normal">
+		<!-- img 标签的 alt 属性：是一个必需的属性，它规定在图像无法显示时的替代文本 -->
 		<img src="./images/1.jpeg" alt="">
+		<!-- span 标签被用来组合文档中的行内元素。注：span 没有固定的格式表现。当对它应用样式时，它才会产生视觉上的变化。 -->
 		<span id="lay"></span>
 	</div>
 	<div id="bigImg">

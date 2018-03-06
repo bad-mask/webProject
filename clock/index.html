@@ -13,6 +13,7 @@
 			width: 250px; height: 38px;
 			margin: 50px auto;
 		}
+		/*选择父元素是 <clock> 元素的每个 <img> 元素*/
 		#clock>img{
 			width: 25px; height: 36px;
 			margin: 0 2px;
@@ -33,16 +34,13 @@
 			var arr = [];
 			var timer = null;
  
-			
 			for( var i=0; i<aImg.length; i++ ){
-
 				aImg[i].src = "./images/" + prevtime.charAt(i) +".png";
 			}
 
 			setInterval( toChange,1000);
 
 			function toChange(){
-
 				var date = new Date();
 				nexttime =  toZero(date.getHours()) + toZero(date.getMinutes()) + toZero(date.getSeconds());
 				toCom( prevtime,nexttime );
@@ -61,10 +59,9 @@
 			}
 			//上下翻转效果：利用数字高度减少至0再增加回来实现视觉差翻转
 			function startMove(){
-				var speed = -4;
+				var speed = -1;
 
 				timer = setInterval(function(){
-
 					for( var i=0; i<arr.length; i++ ){
 						if( aImg[arr[i]].offsetHeight == 0 ){
 							speed = 4;
@@ -93,7 +90,7 @@
 	</script>
 </head>
 <body>
-	<div id="clock">
+	<div id="clock">;
 		<img src="./images/0.png" alt="">
 		<img src="./images/0.png" alt="">
 		<span>:</span>

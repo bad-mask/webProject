@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="Generator" content="Sublime">
+	<meta name="Author" content="badmask">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>消除表情游戏Me</title>
+	<style type="text/css">
+		*{margin: 0; padding: 0; }
+		body{ background: #2a2218; }
+		#box{ margin: 0 auto; width: 920px; height: 600px; position: relative; }
+		#top{ width: 100%; height: 145px; }
+		#top .title{ width: 100%; height: 50px; color: #fff; font-size: 25px; font-weight: 900; line-height: 70px; text-align: center; }
+		#top .sm{ width: 100%; height: 50px; color: #fff; line-height: 50px; text-align: center; }
+		#top .but{ width: 140px; height: 40px; outline: 0; font-size: 16px; color: #fff; background: #a73f2d; border: 1px solid #241d13; border-radius: 5px; box-shadow: 0 0 15px #7a2a1d; cursor: pointer; margin-left: 390px;}
+		#bottom{ width: 100%; height: 455px; background: #fff; position: absolute; left: 0px; top: 165px; color: #333;}
+		#bottom .left{ width: 125px; height: 55px; float: left; padding: 10px; }
+		#bottom .left p{ width: 145px; line-height: 25px; }
+		#bottom .right{ width: 771px; height: 100%; border-left: 2px solid #333; float: left; position: relative; overflow: hidden; }
+		#bottom .right img{ width: 34px; height: 34px; cursor: pointer; position: absolute; left: 0px; top: 0px; display: none; }
+	</style>
+	<script src="xkMe.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var aBut = $('top').getElementsByTagName('input')[0];
+			var aSpan = $('bottom').getElementsByTagName('span');
+			var aDiv = $('bottom').getElementsByTagName('div')[1];
+			var aImg = $('bottom').getElementsByTagName('img')[0];
+
+			var arrImg = ['./img/1.png', './img/2.png', './img/3.png', './img/4.png', './img/5.png', './img/6.png', './img/7.png', './img/8.png', './img/9.png', './img/10.png', './img/11.png'];
+			var sdNum = 1;//图片运行速度
+			var onOff = true; //true: QQ 表情落到最下面时会失分; false: QQ表情掉在最下面，也不会失分。
+
+			for (var i = 0; i < aSpan.length; i++) {
+				aSpan[i].num = 0;//把所有的得分和失分都归 0
+			}
+
+			aBut.onclick = function() {
+				this.value = "游戏进行中";
+				this.disable = true; // 让 button 按钮无法再次点击
+				var width = parseInt(getStyle(aDiv,'width'));// 获取图片活动的宽度
+				var height = parseInt(getStyle(aDiv,'height'))-24;// 获取图片活动的高度，并且减去本身的高度
+				aImg.style.display = 'block';
+				auto();// 开始执行代码
+
+				function auto(){
+					onOff = true;
+					var n = Math.round(Math.random()*(arrImg.length-1));//数组里面的随机显示的QQ表情
+					var x = Math.round(Math.random()*(width-24));//获取 img 随机在屏幕的位置
+					aImg.src = arrImg[n];//随机显示 QQ 表情
+					aImg.style.left = x+'px';//让 img 随机在屏幕的位置
+					doMove(aImg, 'top', sdNum, height, function(){
+						if ( onOff == true) {
+							shake($('bottom'), 'top', function(){
+								aImg.style.top = '0px';//让 QQ 表情会到 0px 的位置
+								aSpan[1].num++;
+								aSpan[1].innerHTML = aSpan[1].num;
+								if (aSpan[1].num == 10) {
+									aBut.value = '开始游戏';
+									aBut.disable = false;
+									alert('游戏结束，你共获得'+aSpan[0].num+'分');
+									for (var i = 0; i < aSpan.length; i++) {
+										aSpan[i].num = 0;
+									}
+								}else{
+									auto();
+								}
+							});
+						}
+					});
+				}
+
+				aImg.onclick = function(){
+					onOff = false;
+					aImg.src = './img/qq.png';
+					sdNum += 0.5;
+					shake(aImg,'left',function(){
+						aImg.style.top = '0px';
+						aSpan[0].num++;
+						aSpan[0].innerHTML = aSpan[0].num;
+						auto();
+					});
+				}
+			};
+
+		})
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="top">
+			<p class="title">你的鼠标有多快？</p>
+			<p class="sm">游戏说明：点击“开始游戏”，随机掉下 QQ 表情，点中它，千万别让他掉下来！！</p>
+			<input class="but" type="button" value="开始游戏" />
+		</div>
+		<div id="bottom">
+			<div class="left">
+				<p>得分：<span>0</span>分</p>
+				<p>失分：<span>0</span>分</p>
+			</div>
+			<div class="right">
+				<img src="" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
